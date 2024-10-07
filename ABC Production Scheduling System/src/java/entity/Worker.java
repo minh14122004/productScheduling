@@ -4,10 +4,17 @@
  */
 package entity;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nguyễn Quang Minh
  */
 public class Worker {
+    public int wId;
+    public int aID;
+    public String name;
+    public int facID;
+//    public ArrayList<>
     
 }
