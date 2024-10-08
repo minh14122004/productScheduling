@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author Nguyễn Quang Minh
  */
-public abstract class DBContext {
+public abstract class DBContext<T> {
     protected Connection connection;
     public DBContext()
     {
