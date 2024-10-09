@@ -28,6 +28,48 @@ public class Shift {
         this.to = to;
     }
 
+    public int getsID() {
+        return sID;
+    }
+
+    public void setsID(int sID) {
+        this.sID = sID;
+    }
+
+    public int getFacID() {
+        return facID;
+    }
+
+    public void setFacID(int facID) {
+        this.facID = facID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Timer getStart() {
+        return start;
+    }
+
+    public void setStart(Timer start) {
+        this.start = start;
+    }
+
+    public Timer getTo() {
+        return to;
+    }
+
+    public void setTo(Timer to) {
+        this.to = to;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Shift{" + "sID=" + sID + ", facID=" + facID + ", name=" + name + ", start=" + start + ", to=" + to + '}';
