@@ -15,17 +15,15 @@ public class Worker {
     public int aID;
     public String name;
     public int facID;
-    public boolean gender;
 
     public Worker() {
     }
 
-    public Worker(int wId, int aID, String name, int facID, boolean gender) {
+    public Worker(int wId, int aID, String name, int facID) {
         this.wId = wId;
         this.aID = aID;
         this.name = name;
         this.facID = facID;
-        this.gender = gender;
     }
 
     public int getwId() {
@@ -60,20 +58,10 @@ public class Worker {
         this.facID = facID;
     }
 
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
     @Override
     public String toString() {
-        return "Worker{" + "wId=" + wId + ", aID=" + aID + ", name=" + name + ", facID=" + facID + ", gender=" + gender + '}';
+        return "Worker{" + "wId=" + wId + ", aID=" + aID + ", name=" + name + ", facID=" + facID + '}';
     }
-    
-    
-    
+
     
 }

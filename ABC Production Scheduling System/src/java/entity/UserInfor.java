@@ -8,18 +8,25 @@ package entity;
  *
  * @author Nguyễn Quang Minh
  */
+import java.sql.*;
+
+
 public class UserInfor {
     public int uID;
     public int aID;
     public String name;
+    public boolean gender;
+    public Date dob;
 
     public UserInfor() {
     }
 
-    public UserInfor(int uID, int aID, String name) {
+    public UserInfor(int uID, int aID, String name, boolean gender, Date dob) {
         this.uID = uID;
         this.aID = aID;
         this.name = name;
+        this.gender = gender;
+        this.dob = dob;
     }
 
     public int getuID() {
@@ -46,10 +53,28 @@ public class UserInfor {
         this.name = name;
     }
 
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
     @Override
     public String toString() {
-        return "UserInfor{" + "uID=" + uID + ", aID=" + aID + ", name=" + name + '}';
+        return "UserInfor{" + "uID=" + uID + ", aID=" + aID + ", name=" + name + ", gender=" + gender + ", dob=" + dob + '}';
     }
+    
+    
     
     
 }
