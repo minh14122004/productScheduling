@@ -4,40 +4,34 @@
  */
 package entity;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nguyễn Quang Minh
  */
-public class Account {
-    public int aID;
-    public int rID;
+public class User {
+    private int uID;
     private String username;
     private String password;
+    private ArrayList<Role> rID;
 
-    public Account() {
+    public User() {
     }
 
-    public Account(int aID, int rID, String username, String password) {
-        this.aID = aID;
-        this.rID = rID;
+    public User(int uID, String username, String password, ArrayList<Role> rID) {
+        this.uID = uID;
         this.username = username;
         this.password = password;
-    }
-
-    public int getaID() {
-        return aID;
-    }
-
-    public void setaID(int aID) {
-        this.aID = aID;
-    }
-
-    public int getrID() {
-        return rID;
-    }
-
-    public void setrID(int rID) {
         this.rID = rID;
+    }
+
+    public int getuID() {
+        return uID;
+    }
+
+    public void setuID(int uID) {
+        this.uID = uID;
     }
 
     public String getUsername() {
@@ -56,11 +50,17 @@ public class Account {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" + "aID=" + aID + ", rID=" + rID + ", username=" + username + ", password=" + password + '}';
+    public ArrayList<Role> getrID() {
+        return rID;
     }
 
-    
+    public void setrID(ArrayList<Role> rID) {
+        this.rID = rID;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "uID=" + uID + ", username=" + username + ", password=" + password + ", rID=" + rID + '}';
+    }
 
 }

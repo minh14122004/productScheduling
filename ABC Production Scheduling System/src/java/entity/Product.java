@@ -9,17 +9,15 @@ package entity;
  * @author Nguyễn Quang Minh
  */
 public class Product {
-    public int pID;
-    public String productName;
-    public int estimated;
+    private int pID;
+    private String pName;
 
     public Product() {
     }
 
-    public Product(int pID, String productName, int estimated) {
+    public Product(int pID, String pName) {
         this.pID = pID;
-        this.productName = productName;
-        this.estimated = estimated;
+        this.pName = pName;
     }
 
     public int getpID() {
@@ -30,26 +28,20 @@ public class Product {
         this.pID = pID;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getpName() {
+        return pName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getEstimated() {
-        return estimated;
-    }
-
-    public void setEstimated(int estimated) {
-        this.estimated = estimated;
+    public void setpName(String pName) {
+        this.pName = pName;
     }
 
     @Override
     public String toString() {
-        return "Product{" + "pID=" + pID + ", productName=" + productName + ", estimated=" + estimated + '}';
+        return "Product{" + "pID=" + pID + ", pName=" + pName + '}';
     }
-
+    
+    
+    
     
 }

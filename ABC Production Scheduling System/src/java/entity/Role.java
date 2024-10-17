@@ -11,16 +11,18 @@ import java.util.ArrayList;
  * @author Nguyễn Quang Minh
  */
 public class Role {
-    public int rID;
-    public String nameRole;
-    public ArrayList<Feature> fID;
-
+    private int rID;
+    private String roleName;
+    private String description;
+    private ArrayList<Feature> fID;
+        
     public Role() {
     }
 
-    public Role(int rID, String nameRole, ArrayList<Feature> fID) {
+    public Role(int rID, String roleName, String description, ArrayList<Feature> fID) {
         this.rID = rID;
-        this.nameRole = nameRole;
+        this.roleName = roleName;
+        this.description = description;
         this.fID = fID;
     }
 
@@ -32,12 +34,20 @@ public class Role {
         this.rID = rID;
     }
 
-    public String getNameRole() {
-        return nameRole;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setNameRole(String nameRole) {
-        this.nameRole = nameRole;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public ArrayList<Feature> getfID() {
@@ -50,8 +60,9 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" + "rID=" + rID + ", nameRole=" + nameRole + ", fID=" + fID + '}';
+        return "Role{" + "rID=" + rID + ", roleName=" + roleName + ", description=" + description + ", fID=" + fID + '}';
     }
+
     
     
 }

@@ -4,24 +4,22 @@
  */
 package entity;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Nguyễn Quang Minh
  */
 public class Feature {
-    public int fID;
-    public String featureName;
-    public ArrayList<Role> rID;
+    private int fID;
+    private String fName;
+    private String url;
 
     public Feature() {
     }
 
-    public Feature(int fID, String featureName, ArrayList<Role> rID) {
+    public Feature(int fID, String fName, String url) {
         this.fID = fID;
-        this.featureName = featureName;
-        this.rID = rID;
+        this.fName = fName;
+        this.url = url;
     }
 
     public int getfID() {
@@ -32,25 +30,25 @@ public class Feature {
         this.fID = fID;
     }
 
-    public String getFeatureName() {
-        return featureName;
+    public String getfName() {
+        return fName;
     }
 
-    public void setFeatureName(String featureName) {
-        this.featureName = featureName;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-    public ArrayList<Role> getrID() {
-        return rID;
+    public String getUrl() {
+        return url;
     }
 
-    public void setrID(ArrayList<Role> rID) {
-        this.rID = rID;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
     public String toString() {
-        return "Feature{" + "fID=" + fID + ", featureName=" + featureName + ", rID=" + rID + '}';
+        return "Feature{" + "fID=" + fID + ", fName=" + fName + ", url=" + url + '}';
     }
     
     
