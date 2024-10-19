@@ -12,19 +12,27 @@ import java.util.ArrayList;
  */
 public class User {
     private int uID;
+    private int rID;
     private String username;
     private String password;
-    private int rID;
-
+    private int EmployeeID;
+    
     public User() {
     }
 
-    public User(int uID, String username, String password, int rID) {
+    public User(int uID, int EmployeeID) {
         this.uID = uID;
+        this.EmployeeID = EmployeeID;
+    }
+
+    public User(int uID, int rID, String username, String password, int EmployeeID) {
+        this.uID = uID;
+        this.rID = rID;
         this.username = username;
         this.password = password;
-        this.rID = rID;
+        this.EmployeeID = EmployeeID;
     }
+    
 
     public int getuID() {
         return uID;
@@ -58,10 +66,17 @@ public class User {
         this.rID = rID;
     }
 
-    
+    public int getEmployeeID() {
+        return EmployeeID;
+    }
+
+    public void setEmployeeID(int EmployeeID) {
+        this.EmployeeID = EmployeeID;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "uID=" + uID + ", username=" + username + ", password=" + password + ", rID=" + rID + '}';
+        return "User{" + "uID=" + uID + ", rID=" + rID + ", username=" + username + ", password=" + password + ", EmployeeID=" + EmployeeID + '}';
     }
 
 }
