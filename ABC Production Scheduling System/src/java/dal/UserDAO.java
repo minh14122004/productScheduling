@@ -16,6 +16,15 @@ import java.util.logging.Logger;
  */
 public class UserDAO extends DBContext<User> {
 
+    
+    /**
+     * This method for get infor of user who login
+     * in the system to manage and control
+     * 
+     * @param username
+     * @param password
+     * @return infor uID, RoleID, EmployeeID of user
+     */
     public User getLogin(String username, String password) {
         String sql = "SELECT uID, RoleID, EmployeeID from [User]\n"
                 + "WHERE username = ? AND password = ?;";
