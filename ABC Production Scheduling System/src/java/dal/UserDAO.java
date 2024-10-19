@@ -5,7 +5,10 @@
 package dal;
 
 import entity.User;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,12 +17,34 @@ import java.util.ArrayList;
 public class UserDAO extends DBContext<User> {
 
     public User getLogin(String username, String password) {
-        String sql = "SELECT u.uID, e.EmployeeName\n"
-                + "FROM [dbo].[User] u\n"
-                + "JOIN [dbo].[Employee] e ON u.EmployeeID = e.EmployeeID\n"
-                + "WHERE u.username = ? AND u.password = ?;";
+        String sql = "SELECT uID, RoleID, EmployeeID from [User]\n"
+                + "WHERE username = ? AND password = ?;";
+        PreparedStatement stm = null;
+        User user = null;
 
-        return null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                user.setuID(rs.getInt("uID"));
+                user.setrID(rs.getInt("RoleID"));
+                user.setEmployeeID(rs.getInt("EmployeeName"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return user;
     }
 
     @Override

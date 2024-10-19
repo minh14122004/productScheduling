@@ -20,8 +20,10 @@ public class User {
     public User() {
     }
 
-    public User(int uID, int EmployeeID) {
+
+    public User(int uID, int rID, int EmployeeID) {
         this.uID = uID;
+        this.rID = rID;
         this.EmployeeID = EmployeeID;
     }
 
@@ -33,7 +35,6 @@ public class User {
         this.EmployeeID = EmployeeID;
     }
     
-
     public int getuID() {
         return uID;
     }
