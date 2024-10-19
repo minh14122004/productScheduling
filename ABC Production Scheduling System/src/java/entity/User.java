@@ -14,12 +14,12 @@ public class User {
     private int uID;
     private String username;
     private String password;
-    private ArrayList<Role> rID;
+    private int rID;
 
     public User() {
     }
 
-    public User(int uID, String username, String password, ArrayList<Role> rID) {
+    public User(int uID, String username, String password, int rID) {
         this.uID = uID;
         this.username = username;
         this.password = password;
@@ -50,14 +50,15 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Role> getrID() {
+    public int getrID() {
         return rID;
     }
 
-    public void setrID(ArrayList<Role> rID) {
+    public void setrID(int rID) {
         this.rID = rID;
     }
 
+    
     @Override
     public String toString() {
         return "User{" + "uID=" + uID + ", username=" + username + ", password=" + password + ", rID=" + rID + '}';
