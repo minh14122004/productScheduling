@@ -40,7 +40,7 @@ public class UserDAO extends DBContext<User> {
                 user = new User();
                 user.setuID(rs.getInt("uID"));
                 user.setrID(rs.getInt("RoleID"));
-                user.setEmployeeID(rs.getInt("EmployeeName"));
+                user.setEmployeeID(rs.getInt("EmployeeID"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,5 +80,10 @@ public class UserDAO extends DBContext<User> {
     public User get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+//    public static void main(String[] args) {
+//        User u = new UserDAO().getLogin("HR1", "123");
+//        System.out.println(u.toString());
+//    }
 
 }
