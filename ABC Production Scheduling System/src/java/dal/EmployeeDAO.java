@@ -6,6 +6,9 @@ package dal;
 
 import entity.Employee;
 import java.util.ArrayList;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,8 +33,9 @@ public class EmployeeDAO extends DBContext<Employee>{
 
     @Override
     public ArrayList<Employee> list() {
-        
-        
+        String sql ="SELECT * FROM Employee;";
+        PreparedStatement stm = null;
+        Employee employ = null;
         return null;
     }
 
