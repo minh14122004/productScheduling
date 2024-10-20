@@ -30,7 +30,9 @@ public class EmployeeDAO extends DBContext<Employee>{
 
     @Override
     public ArrayList<Employee> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        
+        return null;
     }
 
     @Override
