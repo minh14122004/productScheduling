@@ -16,6 +16,43 @@ import java.util.logging.Logger;
  */
 public class EmployeeDAO extends DBContext<Employee> {
 
+    public ArrayList<Employee> getEmployeeByRole(int role) {
+        String sql = "SELECT * FROM Employee WHERE RoleID = ?;";
+        PreparedStatement stm = null;
+        ArrayList<Employee> ems = new ArrayList<>();
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, role);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Employee employee = new Employee();
+                employee.setrID(rs.getInt("EmployeeID"));
+                employee.seteName(rs.getString("EmployeeName"));
+                employee.setGender(rs.getBoolean("gender"));
+                employee.setAddress(rs.getString("address"));
+                employee.setDob(rs.getDate("dob"));
+                employee.setrID(rs.getInt("RoleID"));
+                employee.setdID(rs.getInt("DepartmentID"));
+                employee.setSalary(rs.getLong("salary"));
+
+                ems.add(employee);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return ems;
+    }
+
     @Override
     public void insert(Employee entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -35,21 +72,24 @@ public class EmployeeDAO extends DBContext<Employee> {
     public ArrayList<Employee> list() {
         String sql = "SELECT * FROM Employee;";
         PreparedStatement stm = null;
+        ArrayList<Employee> ems = new ArrayList<>();
 
         try {
-            stm= connection.prepareStatement(sql);
+            stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
-                Employee e = new Employee();
-                e.setrID(rs.getInt("EmployeeID"));
-                e.seteName(rs.getString("EmployeeName"));
-                e.setGender(rs.getBoolean("gender"));
-                e.setAddress(rs.getString("address"));
-                e.setDob(rs.getDate("dob"));
-                e.setrID(rs.getInt("RoleID"));
-                e.setdID(rs.getInt("DepartmentID"));
-                e.setSalary(rs.getLong("salary"));
-                
+            while (rs.next()) {
+                Employee employee = new Employee();
+                employee.setrID(rs.getInt("EmployeeID"));
+                employee.seteName(rs.getString("EmployeeName"));
+                employee.setGender(rs.getBoolean("gender"));
+                employee.setAddress(rs.getString("address"));
+                employee.setDob(rs.getDate("dob"));
+                employee.setrID(rs.getInt("RoleID"));
+                employee.setdID(rs.getInt("DepartmentID"));
+                employee.setSalary(rs.getLong("salary"));
+
+                ems.add(employee);
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,7 +102,7 @@ public class EmployeeDAO extends DBContext<Employee> {
             }
         }
 
-        return null;
+        return ems;
     }
 
     @Override
