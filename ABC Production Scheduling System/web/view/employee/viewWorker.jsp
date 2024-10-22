@@ -24,6 +24,10 @@
                 <td>Department</td>
                 <td>Salary</td>
             </tr>
+            <c:forEach items="${requestScope.emps}" var="e">
+                <tr>
+                </tr>
+            </c:forEach>
         </table>
     </body>
 </html>
