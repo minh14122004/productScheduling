@@ -23,7 +23,6 @@
                 <td>Address</td>
                 <td>Department</td>
                 <td>Salary</td>
-                <td></td>
             </tr>
         </table>
     </body>
