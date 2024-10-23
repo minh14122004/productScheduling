@@ -21,7 +21,6 @@
                 <td>Address</td>
                 <td>Dob</td>
                 <td>Role</td>
-                <td>Address</td>
                 <td>Department</td>
                 <td>Salary</td>
             </tr>
@@ -38,15 +37,12 @@
                 </td>
                 <td>${e.address}</td>
                 <td>${e.dob}</td>
-
                 <td>
-                    <c:set var="roleName" value="${roleDAO.getRoleNameById(employee.rID)}" />
+                    <c:set var="roleName" value="${roleDAO.getRoleNameById(e.rID)}" />
                     ${roleName}
                 </td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>${e.salary}</td>
             </c:forEach>
         </table>
     </body>
