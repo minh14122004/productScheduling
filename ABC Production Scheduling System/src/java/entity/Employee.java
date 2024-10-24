@@ -21,6 +21,13 @@ public class Employee {
     private int dID;
     private long salary;
 
+    private Role role;
+    private Department dept;
+    
+    
+    
+    
+    
     public Employee() {
     }
 
@@ -97,6 +104,22 @@ public class Employee {
 
     public void setSalary(long salary) {
         this.salary = salary;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Department getDept() {
+        return dept;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
     }
 
     @Override

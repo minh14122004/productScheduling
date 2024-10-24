@@ -5,6 +5,8 @@
         <group>
             <file>file:/D:/PRJ/Assignment/productScheduling/ABC%20Production%20Scheduling%20System/web/view/employee/list.jsp</file>
             <file>file:/D:/PRJ/Assignment/productScheduling/ABC%20Production%20Scheduling%20System/src/java/dal/EmployeeDAO.java</file>
+            <file>file:/D:/PRJ/Assignment/productScheduling/ABC%20Production%20Scheduling%20System/src/java/dal/DepartmentDAO.java</file>
+            <file>file:/D:/PRJ/Assignment/productScheduling/ABC%20Production%20Scheduling%20System/src/java/dal/RoleDAO.java</file>
             <file>file:/D:/PRJ/Assignment/productScheduling/ABC%20Production%20Scheduling%20System/src/java/dal/UserDAO.java</file>
         </group>
     </open-files>
