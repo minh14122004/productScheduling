@@ -25,25 +25,27 @@
                 <td>Salary</td>
             </tr>
             <c:forEach items="${requestScope.emps}" var="e">
-                <td>${e.id}</td>
-                <td>${e.name}</td>
-                <td>
-                    <c:if test="${!e.gender}">
-                        Male
-                    </c:if>
-                    <c:if test="${e.gender}">
-                        Female
-                    </c:if>
-                </td>
-                <td>${e.address}</td>
-                <td>${e.dob}</td>
-                <td>
-                    ${e.role.roleName}
-                </td>
-                <td>
-                    ${e.dept.dName}
-                </td>
-                <td>${e.salary}</td>
+                <tr>
+                    <td>${e.eID}</td>
+                    <td>${e.eName}</td>
+                    <td>
+                        <c:if test="${!e.gender}">
+                            Male
+                        </c:if>
+                        <c:if test="${e.gender}">
+                            Female
+                        </c:if>
+                    </td>
+                    <td>${e.address}</td>
+                    <td>${e.dob}</td>
+                    <td>
+                        ${e.role.roleName}
+                    </td>
+                    <td>
+                        ${e.dept.dName}
+                    </td>
+                    <td>${e.salary}</td>
+                </tr>
             </c:forEach>
         </table>
     </body>
