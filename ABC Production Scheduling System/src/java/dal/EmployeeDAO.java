@@ -5,6 +5,7 @@
 package dal;
 
 import entity.Employee;
+import entity.Role;
 import java.util.ArrayList;
 import java.sql.*;
 import java.util.logging.Level;
@@ -15,8 +16,8 @@ import java.util.logging.Logger;
  * @author Nguyễn Quang Minh
  */
 public class EmployeeDAO extends DBContext<Employee> {
-    
-    public ArrayList<Employee> getWorkerByDid(int DepartmenID){
+
+    public ArrayList<Employee> getWorkerByDid(int DepartmenID) {
         String sql = "SELECT * FROM Employee WHERE RoleID = 3 AND DepartmentID = ?;";
         PreparedStatement stm = null;
         ArrayList<Employee> ems = new ArrayList<>();
@@ -107,7 +108,9 @@ public class EmployeeDAO extends DBContext<Employee> {
 
     @Override
     public ArrayList<Employee> list() {
-        String sql = "SELECT * FROM Employee;";
+        String sql = "SELECT Employee.*, Role.RoleName AS RoleName\n"
+                + "FROM Employee\n"
+                + "JOIN Role ON Employee.RoleID = Role.RoleID;;";
         PreparedStatement stm = null;
         ArrayList<Employee> ems = new ArrayList<>();
 
@@ -121,7 +124,12 @@ public class EmployeeDAO extends DBContext<Employee> {
                 employee.setGender(rs.getBoolean("gender"));
                 employee.setAddress(rs.getString("address"));
                 employee.setDob(rs.getDate("dob"));
-                employee.setrID(rs.getInt("RoleID"));
+
+                Role r = new Role();
+                r.setrID(rs.getInt("RoleID"));
+                r.setRoleName(rs.getString("RoleName"));
+                employee.setRole(r);
+                
                 employee.setdID(rs.getInt("DepartmentID"));
                 employee.setSalary(rs.getLong("salary"));
 
