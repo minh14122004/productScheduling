@@ -38,10 +38,11 @@
                 <td>${e.address}</td>
                 <td>${e.dob}</td>
                 <td>
-                    <c:set var="roleName" value="${roleDAO.getRoleNameById(e.rID)}" />
-                    ${roleName}
+                    ${e.role.roleName}
                 </td>
-                <td></td>
+                <td>
+                    ${e.dept.dName}
+                </td>
                 <td>${e.salary}</td>
             </c:forEach>
         </table>
