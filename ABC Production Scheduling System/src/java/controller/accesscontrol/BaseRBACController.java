@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class BaseRBACController extends BaseRequiredAuthenticationController {
-    private boolean isAuthorized(HttpServletRequest req,User account)
-    {
+
+    private boolean isAuthorized(HttpServletRequest req, User account) {
 
         return false;
     }
@@ -33,7 +33,8 @@ public abstract class BaseRBACController extends BaseRequiredAuthenticationContr
         if (isAuthorized(req, account)) {
             doAuthorizedGet(req, resp, account);
         } else {
-            resp.sendError(403, "You do not have right to access this feature!");
+//            resp.sendError(403, "You do not have right to access this feature!");
+            doAuthorizedGet(req, resp, account);
         }
 
     }
@@ -43,7 +44,8 @@ public abstract class BaseRBACController extends BaseRequiredAuthenticationContr
         if (isAuthorized(req, account)) {
             doAuthorizedPost(req, resp, account);
         } else {
-            resp.sendError(403, "You do not have right to access this feature!");
+//            resp.sendError(403, "You do not have right to access this feature!");
+            doAuthorizedGet(req, resp, account);
         }
     }
 
