@@ -12,20 +12,33 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <table border="1px">
+        <h1>Employee List</h1>
+        <table>
             <tr>
-                <td>Id</td>
-                <td>Name</td>
-                <td>Gender</td>
-                <td>Address</td>
-                <td>Dob</td>
-                <td>Address</td>
-                <td>Department</td>
-                <td>Salary</td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Dob</th>
+                <th>Department</th>
+                <th>Salary</th>
             </tr>
             <c:forEach items="${requestScope.emps}" var="e">
                 <tr>
+                    <td>${e.eID}</td>
+                    <td>${e.eName}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${e.gender}">Male</c:when>
+                            <c:otherwise>Female</c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>${e.address}</td>
+                    <td>${e.dob}</td>
+                    <!-- Cho role employee -->
+                        <td>${e.dept.dName}</td>
+                    <!-- comment -->
+                    <td>${e.salary}</td>
                 </tr>
             </c:forEach>
         </table>

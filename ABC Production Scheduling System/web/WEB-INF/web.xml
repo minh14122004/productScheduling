@@ -8,6 +8,10 @@
         <servlet-name>EmployeeView</servlet-name>
         <servlet-class>controller.employee.EmployeeViewController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewWorkerController</servlet-name>
+        <servlet-class>controller.employee.ViewWorkerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>EmployeeView</servlet-name>
         <url-pattern>/view/employeeList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewWorkerController</servlet-name>
+        <url-pattern>/view/employee/worker</url-pattern>
     </servlet-mapping>
 </web-app>

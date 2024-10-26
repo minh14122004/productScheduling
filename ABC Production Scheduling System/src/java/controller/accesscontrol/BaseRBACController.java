@@ -33,8 +33,8 @@ public abstract class BaseRBACController extends BaseRequiredAuthenticationContr
         if (isAuthorized(req, account)) {
             doAuthorizedGet(req, resp, account);
         } else {
-//            resp.sendError(403, "You do not have right to access this feature!");
-            doAuthorizedGet(req, resp, account);
+            resp.sendError(403, "You do not have right to access this feature!");
+//            doAuthorizedGet(req, resp, account);
         }
 
     }
@@ -44,8 +44,8 @@ public abstract class BaseRBACController extends BaseRequiredAuthenticationContr
         if (isAuthorized(req, account)) {
             doAuthorizedPost(req, resp, account);
         } else {
-//            resp.sendError(403, "You do not have right to access this feature!");
-            doAuthorizedGet(req, resp, account);
+            resp.sendError(403, "You do not have right to access this feature!");
+//            doAuthorizedGet(req, resp, account);
         }
     }
 

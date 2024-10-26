@@ -30,9 +30,7 @@ public abstract class BaseRequiredAuthenticationController extends HttpServlet {
             User user = (User) req.getSession().getAttribute("account");
             doPost(req, resp, user);
         } else {
-//            resp.sendError(403, "You do n't have right to access");
-            User user = (User) req.getSession().getAttribute("account");
-            doGet(req, resp, user);
+            resp.sendError(403, "You do n't have right to access");
         }
     }
 
@@ -43,9 +41,9 @@ public abstract class BaseRequiredAuthenticationController extends HttpServlet {
             User user = (User) req.getSession().getAttribute("account");
             doGet(req, resp, user);
         } else {
-//            resp.sendError(403, "You do n't have right to access");
-            User user = (User) req.getSession().getAttribute("account");
-            doGet(req, resp, user);
+            resp.sendError(403, "You do n't have right to access");
+//            User user = (User) req.getSession().getAttribute("account");
+//            doGet(req, resp, user);
         }
     }
 
