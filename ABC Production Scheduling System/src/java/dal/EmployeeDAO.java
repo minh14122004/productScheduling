@@ -4,6 +4,7 @@
  */
 package dal;
 
+import entity.Department;
 import entity.Employee;
 import entity.Role;
 import java.util.ArrayList;
@@ -108,9 +109,10 @@ public class EmployeeDAO extends DBContext<Employee> {
 
     @Override
     public ArrayList<Employee> list() {
-        String sql = "SELECT Employee.*, Role.RoleName AS RoleName\n"
+        String sql = "SELECT Employee.*, Role.RoleName AS RoleName, Department.DepartmentName AS DepartmentName\n"
                 + "FROM Employee\n"
-                + "JOIN Role ON Employee.RoleID = Role.RoleID;;";
+                + "JOIN Role ON Employee.RoleID = Role.RoleID\n"
+                + "JOIN Department ON Employee.DepartmentID = Department.DepartmentID;";
         PreparedStatement stm = null;
         ArrayList<Employee> ems = new ArrayList<>();
 
@@ -124,15 +126,19 @@ public class EmployeeDAO extends DBContext<Employee> {
                 employee.setGender(rs.getBoolean("gender"));
                 employee.setAddress(rs.getString("address"));
                 employee.setDob(rs.getDate("dob"));
+                employee.setdID(rs.getInt("DepartmentID"));
+                employee.setSalary(rs.getLong("salary"));
 
                 Role r = new Role();
                 r.setrID(rs.getInt("RoleID"));
                 r.setRoleName(rs.getString("RoleName"));
                 employee.setRole(r);
                 
-                employee.setdID(rs.getInt("DepartmentID"));
-                employee.setSalary(rs.getLong("salary"));
-
+                Department d = new Department();
+                d.setdID(rs.getInt("DepartmentID"));
+                d.setdName(rs.getString("DepartmentName"));
+                employee.setDept(d);
+                
                 ems.add(employee);
 
             }
