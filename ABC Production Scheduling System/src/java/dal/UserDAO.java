@@ -68,13 +68,46 @@ public class UserDAO extends DBContext<User> {
             stm = connection.prepareStatement(sql);
             stm.setInt(1, rID);
             ResultSet rs = stm.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Feature feature = new Feature();
                 feature.setfID(rs.getInt("FeatureID"));
                 feature.setfName(rs.getString("FeatureName"));
                 feature.setUrl(rs.getString("URL"));
-                
+
                 features.add(feature);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return features;
+    }
+
+    public int getDepartmentIDByHeader(User header) {
+        String sql = "SELECT d.DepartmentID\n"
+                + "FROM [User] u\n"
+                + "JOIN Employee e ON u.EmployeeID = e.EmployeeID\n"
+                + "JOIN Department d ON e.DepartmentID = d.DepartmentID\n"
+                + "WHERE u.uID = ?";
+        
+        int headerID = header.getuID();
+        PreparedStatement stm = null;
+        int DepartmentID = 0;
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, headerID);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                DepartmentID = rs.getInt("DepartmentID");
             }
             
         } catch (SQLException ex) {
@@ -88,7 +121,7 @@ public class UserDAO extends DBContext<User> {
             }
         }
 
-        return  features;
+        return DepartmentID;
     }
 
     @Override

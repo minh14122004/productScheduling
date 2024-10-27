@@ -35,7 +35,6 @@ public class EmployeeDAO extends DBContext<Employee> {
                 employee.setAddress(rs.getString("address"));
                 employee.setDob(rs.getDate("dob"));
                 employee.setrID(rs.getInt("RoleID"));
-                employee.setdID(rs.getInt("DepartmentID"));
                 employee.setSalary(rs.getLong("salary"));
 
                 ems.add(employee);
