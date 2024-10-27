@@ -58,7 +58,7 @@ public class ProductDAO extends DBContext<Product> {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         return products;
     }
 

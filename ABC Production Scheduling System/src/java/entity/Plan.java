@@ -10,24 +10,29 @@ package entity;
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Plan {
     private int planID;
     private String planName;
     private Date startDate;
     private Date endDate;
-    private int dID;
+    private Department dept;
+    
+    private ArrayList<PlanCampain> campains = new ArrayList<>();
 
     public Plan() {
     }
 
-    public Plan(int planID, String planName, Date startDate, Date endDate, int dID) {
+    public Plan(int planID, String planName, Date startDate, Date endDate, Department dept) {
         this.planID = planID;
         this.planName = planName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.dID = dID;
+        this.dept = dept;
     }
+
+
 
     public int getPlanID() {
         return planID;
@@ -61,17 +66,27 @@ public class Plan {
         this.endDate = endDate;
     }
 
-    public int getdID() {
-        return dID;
+    public Department getDept() {
+        return dept;
     }
 
-    public void setdID(int dID) {
-        this.dID = dID;
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
+
+
+    public ArrayList<PlanCampain> getCampains() {
+        return campains;
+    }
+
+    public void setCampains(ArrayList<PlanCampain> campains) {
+        this.campains = campains;
     }
 
     @Override
     public String toString() {
-        return "Plan{" + "planID=" + planID + ", planName=" + planName + ", startDate=" + startDate + ", endDate=" + endDate + ", dID=" + dID + '}';
+        return "Plan{" + "planID=" + planID + ", planName=" + planName + ", startDate=" + startDate + ", endDate=" + endDate + ", dept=" + dept + ", campains=" + campains + '}';
     }
+
     
 }

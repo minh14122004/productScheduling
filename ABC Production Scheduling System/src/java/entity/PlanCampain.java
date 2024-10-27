@@ -10,20 +10,20 @@ package entity;
  */
 public class PlanCampain {
     private int planCampainID;
-    private int planID;
-    private int pID;
+    private Plan plan;
+    private Product product;
     private int quantity;
-    private int estimate;
+    private float cost;
 
     public PlanCampain() {
     }
 
-    public PlanCampain(int planCampainID, int planID, int pID, int quantity, int estimate) {
+    public PlanCampain(int planCampainID, Plan plan, Product product, int quantity, float cost) {
         this.planCampainID = planCampainID;
-        this.planID = planID;
-        this.pID = pID;
+        this.plan = plan;
+        this.product = product;
         this.quantity = quantity;
-        this.estimate = estimate;
+        this.cost = cost;
     }
 
     public int getPlanCampainID() {
@@ -34,20 +34,20 @@ public class PlanCampain {
         this.planCampainID = planCampainID;
     }
 
-    public int getPlanID() {
-        return planID;
+    public Plan getPlan() {
+        return plan;
     }
 
-    public void setPlanID(int planID) {
-        this.planID = planID;
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 
-    public int getpID() {
-        return pID;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setpID(int pID) {
-        this.pID = pID;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -58,18 +58,19 @@ public class PlanCampain {
         this.quantity = quantity;
     }
 
-    public int getEstimate() {
-        return estimate;
+    public float getCost() {
+        return cost;
     }
 
-    public void setEstimate(int estimate) {
-        this.estimate = estimate;
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
     @Override
     public String toString() {
-        return "PlanCampain{" + "planCampainID=" + planCampainID + ", planID=" + planID + ", pID=" + pID + ", quantity=" + quantity + ", estimate=" + estimate + '}';
+        return "PlanCampain{" + "planCampainID=" + planCampainID + ", plan=" + plan + ", product=" + product + ", quantity=" + quantity + ", cost=" + cost + '}';
     }
     
-           
+    
+    
 }
