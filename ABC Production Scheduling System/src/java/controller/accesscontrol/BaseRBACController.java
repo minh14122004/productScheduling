@@ -8,6 +8,7 @@ package controller.accesscontrol;
  *
  * @author Nguyễn Quang Minh
  */
+import dal.UserDAO;
 import entity.Feature;
 import entity.Role;
 import entity.User;
@@ -20,7 +21,15 @@ import java.util.ArrayList;
 public abstract class BaseRBACController extends BaseRequiredAuthenticationController {
 
     private boolean isAuthorized(HttpServletRequest req, User account) {
-
+        String currentUrl = req.getServletPath();
+        UserDAO user = new UserDAO();
+        
+        for (Feature feature : user.getFeaturesByRole(account.getrID())){
+            if (feature.getUrl().equals(currentUrl)){
+                return true;
+            }
+        }
+        
         return false;
     }
 

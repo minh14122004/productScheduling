@@ -88,7 +88,7 @@ public class UserDAO extends DBContext<User> {
             }
         }
 
-        return null;
+        return  features;
     }
 
     @Override
