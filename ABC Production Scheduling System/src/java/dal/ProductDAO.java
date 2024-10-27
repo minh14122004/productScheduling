@@ -43,6 +43,9 @@ public class ProductDAO extends DBContext<Product> {
             while(rs.next()){
                 Product product = new Product();
                 product.setpID(rs.getInt("ProductID"));
+                product.setpName(rs.getString("ProductName"));
+                
+                products.add(product);
             }
             
         } catch (SQLException ex) {
