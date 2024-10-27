@@ -31,6 +31,8 @@ public class ViewWorkerController extends BaseRBACController {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        User header = (User) request.getSession().getAttribute("account");
+        
     } 
 
 
