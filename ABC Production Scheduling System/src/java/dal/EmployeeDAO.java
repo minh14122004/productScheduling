@@ -65,7 +65,7 @@ public class EmployeeDAO extends DBContext<Employee> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Employee employee = new Employee();
-                employee.setrID(rs.getInt("EmployeeID"));
+                employee.seteID(rs.getInt("EmployeeID"));
                 employee.seteName(rs.getString("EmployeeName"));
                 employee.setGender(rs.getBoolean("gender"));
                 employee.setAddress(rs.getString("address"));
