@@ -11,12 +11,12 @@ package entity;
 public class Department {
     private int dID;
     private String dName;
-    private int dType;
+    private String dType;
 
     public Department() {
     }
 
-    public Department(int dID, String dName, int dType) {
+    public Department(int dID, String dName, String dType) {
         this.dID = dID;
         this.dName = dName;
         this.dType = dType;
@@ -38,20 +38,20 @@ public class Department {
         this.dName = dName;
     }
 
-    public int getdType() {
+    public String getdType() {
         return dType;
     }
 
-    public void setdType(int dType) {
+    public void setdType(String dType) {
         this.dType = dType;
     }
 
-    
-    
     @Override
     public String toString() {
         return "Department{" + "dID=" + dID + ", dName=" + dName + ", dType=" + dType + '}';
     }
+
+
     
     
     

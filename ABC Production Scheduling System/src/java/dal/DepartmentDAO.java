@@ -41,6 +41,41 @@ public class DepartmentDAO extends DBContext<Department> {
         return dName;
     }
 
+    public ArrayList<Department> get(String type) {
+        ArrayList<Department> depts = new ArrayList<>();
+        PreparedStatement stm = null;
+        String sql = "SELECT [DepartmentID]\n"
+                + "      ,[DepartmentName]\n"
+                + "      ,[type]\n"
+                + "  FROM [Department] WHERE [type] = ?";
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, type);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Department dept = new Department();
+                dept.setdID(rs.getInt("DepartmentID"));
+                dept.setdName(rs.getString("DepartmentNam"));
+                dept.setdType(rs.getString("type"));
+                
+                depts.add(dept);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return depts;
+    }
+
     @Override
 
     public void insert(Department entity) {
