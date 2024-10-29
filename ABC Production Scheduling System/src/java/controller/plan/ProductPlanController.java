@@ -7,6 +7,8 @@ package controller.plan;
 import controller.accesscontrol.BaseRBACController;
 import dal.DepartmentDAO;
 import dal.ProductDAO;
+import entity.Department;
+import entity.Plan;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +16,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 
 /**
  *
@@ -43,6 +46,5 @@ public class ProductPlanController extends BaseRBACController {
 
     @Override
     protected void doAuthorizedPost(HttpServletRequest req, HttpServletResponse resp, User account) throws ServletException, IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
