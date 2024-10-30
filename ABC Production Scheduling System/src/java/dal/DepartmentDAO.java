@@ -56,7 +56,7 @@ public class DepartmentDAO extends DBContext<Department> {
             while(rs.next()){
                 Department dept = new Department();
                 dept.setdID(rs.getInt("DepartmentID"));
-                dept.setdName(rs.getString("DepartmentNam"));
+                dept.setdName(rs.getString("DepartmentName"));
                 dept.setdType(rs.getString("type"));
                 
                 depts.add(dept);
