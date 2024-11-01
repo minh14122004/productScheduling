@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>LogoutController</servlet-class>
+        <servlet-class>controller.accesscontrol.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -40,4 +40,7 @@
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>

@@ -51,6 +51,7 @@ public class LoginController extends HttpServlet {
 
         if (account != null) {
             req.getSession().setAttribute("account", account);
+            req.getSession().setMaxInactiveInterval(1800);
             resp.sendRedirect("view/Home.html");
         } else {
             resp.getWriter().println("login failed!");
