@@ -51,14 +51,9 @@ public class LoginController extends HttpServlet {
 
         if (account != null) {
             req.getSession().setAttribute("account", account);
-
-            resp.getWriter().println("login successful!");
+            resp.sendRedirect("view/Home.html");
         } else {
             resp.getWriter().println("login failed!");
         }
-
-        String url = this.getInitParameter("url");
-        resp.getWriter().println(url);
-
     }
 }
