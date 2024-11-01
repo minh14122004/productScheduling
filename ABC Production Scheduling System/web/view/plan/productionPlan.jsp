@@ -91,7 +91,7 @@
             <input type="text" name="name"/>
             
             <label>From:</label> 
-            <input type="date" name="from"/>
+            <input type="date" name="start"/>
             
             <label>To:</label>
             <input type="date" name="to"/>
@@ -107,7 +107,7 @@
                 <tr>
                     <th>Product</th>
                     <th>Quantity</th>
-                    <th>Cost</th>
+                    <th>Estimate</th>
                 </tr>
                 <c:forEach items="${requestScope.products}" var="p">
                     <tr>
