@@ -53,15 +53,15 @@ public class DepartmentDAO extends DBContext<Department> {
             stm = connection.prepareStatement(sql);
             stm.setString(1, type);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Department dept = new Department();
                 dept.setdID(rs.getInt("DepartmentID"));
                 dept.setdName(rs.getString("DepartmentName"));
                 dept.setdType(rs.getString("type"));
-                
+
                 depts.add(dept);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -94,7 +94,31 @@ public class DepartmentDAO extends DBContext<Department> {
 
     @Override
     public ArrayList<Department> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Department> depts = new ArrayList<>();
+        PreparedStatement command = null;
+        try {
+            String sql = "SELECT did, dname FROM Department";
+
+            command = connection.prepareStatement(sql);
+            ResultSet rs = command.executeQuery();
+            while (rs.next()) {
+                Department d = new Department();
+                d.setdID(rs.getInt("did"));
+                d.setdName(rs.getString("dname"));
+                depts.add(d);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                command.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return depts;
     }
 
     @Override

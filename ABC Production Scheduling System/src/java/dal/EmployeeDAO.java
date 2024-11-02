@@ -154,6 +154,83 @@ public class EmployeeDAO extends DBContext<Employee> {
 
         return ems;
     }
+    
+    public ArrayList<Employee> search(Integer id, String name, Boolean gender, String address, Date from, Date to, Integer did) {
+        String sql = "SELECT e.eid,e.ename,e.gender,e.address,e.dob,d.did,dname FROM Employee e \n"
+                + "	INNER JOIN Department d ON e.did = d.did\n"
+                + "WHERE (1=1)";
+
+        ArrayList<Employee> emps = new ArrayList<>();
+        ArrayList<Object> paramValues = new ArrayList<>();
+        if (id != null) {
+            sql += " AND e.eid = ?";
+            paramValues.add(id);
+        }
+
+        if (name != null) {
+            sql += " AND e.ename LIKE '%'+?+'%'";
+            paramValues.add(name);
+        }
+
+        if (gender != null) {
+            sql += " AND e.gender = ?";
+            paramValues.add(gender);
+        }
+
+        if (address != null) {
+            sql += " AND e.[address] LIKE '%'+?+'%'";
+            paramValues.add(address);
+        }
+        if (from != null) {
+            sql += " AND e.dob >= ?";
+            paramValues.add(from);
+        }
+
+        if (to != null) {
+            sql += " AND e.dob <= ?";
+            paramValues.add(to);
+        }
+
+        if (did != null) {
+            sql += " AND d.did = ?";
+            paramValues.add(did);
+        }
+
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            for (int i = 0; i < paramValues.size(); i++) {
+                stm.setObject((i + 1), paramValues.get(i));
+            }
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Employee e = new Employee();
+                e.seteID(rs.getInt("eid"));
+                e.seteName(rs.getNString("ename"));
+                e.setGender(rs.getBoolean("gender"));
+                e.setDob(rs.getDate("dob"));
+                e.setAddress(rs.getString("address"));
+
+                Department d = new Department();
+                d.setdID(rs.getInt("did"));
+                d.setdName(rs.getString("dname"));
+                e.setDept(d);
+
+                emps.add(e);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return emps;
+    }
+
 
     public ArrayList<Employee> filterEmployees(String name, String gender, String address, String role,
             String department, Long salaryMin, Long salaryMax) {
