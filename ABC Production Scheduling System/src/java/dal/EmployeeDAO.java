@@ -132,12 +132,12 @@ public class EmployeeDAO extends DBContext<Employee> {
                 r.setrID(rs.getInt("RoleID"));
                 r.setRoleName(rs.getString("RoleName"));
                 employee.setRole(r);
-                
+
                 Department d = new Department();
                 d.setdID(rs.getInt("DepartmentID"));
                 d.setdName(rs.getString("DepartmentName"));
                 employee.setDept(d);
-                
+
                 ems.add(employee);
 
             }
@@ -150,6 +150,72 @@ public class EmployeeDAO extends DBContext<Employee> {
             } catch (SQLException ex) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+
+        return ems;
+    }
+
+    public ArrayList<Employee> filterEmployees(String name, String gender, String address, String role,
+            String department, Long salaryMin, Long salaryMax) {
+        ArrayList<Employee> ems = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM Employee JOIN Role ON Employee.RoleID = Role.RoleID "
+                + "JOIN Department ON Employee.DepartmentID = Department.DepartmentID WHERE 1=1");
+
+        // Tạo điều kiện lọc động dựa trên các tham số không null
+        if (name != null && !name.isEmpty()) {
+            sql.append(" AND EmployeeName LIKE ?");
+        }
+        if (gender != null && !gender.isEmpty()) {
+            sql.append(" AND gender = ?");
+        }
+        if (address != null && !address.isEmpty()) {
+            sql.append(" AND address LIKE ?");
+        }
+        if (role != null && !role.isEmpty()) {
+            sql.append(" AND RoleName LIKE ?");
+        }
+        if (department != null && !department.isEmpty()) {
+            sql.append(" AND DepartmentName LIKE ?");
+        }
+        if (salaryMin != null) {
+            sql.append(" AND salary >= ?");
+        }
+        if (salaryMax != null) {
+            sql.append(" AND salary <= ?");
+        }
+
+        try (PreparedStatement stm = connection.prepareStatement(sql.toString())) {
+            int index = 1;
+            if (name != null && !name.isEmpty()) {
+                stm.setString(index++, "%" + name + "%");
+            }
+            if (gender != null && !gender.isEmpty()) {
+                stm.setBoolean(index++, Boolean.parseBoolean(gender));
+            }
+            if (address != null && !address.isEmpty()) {
+                stm.setString(index++, "%" + address + "%");
+            }
+            if (role != null && !role.isEmpty()) {
+                stm.setString(index++, "%" + role + "%");
+            }
+            if (department != null && !department.isEmpty()) {
+                stm.setString(index++, "%" + department + "%");
+            }
+            if (salaryMin != null) {
+                stm.setLong(index++, salaryMin);
+            }
+            if (salaryMax != null) {
+                stm.setLong(index++, salaryMax);
+            }
+
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Employee employee = new Employee();
+                // Set các thuộc tính của employee từ rs
+                ems.add(employee);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
 
         return ems;
