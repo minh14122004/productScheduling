@@ -53,21 +53,6 @@
     </head>
     <body>
         <h1>Employee List</h1>
-        <form method="get" action="EmployeeViewController">
-            Name: <input type="text" name="name">
-            Gender: 
-            <select name="gender">
-                <option value="">All</option>
-                <option value="true">Male</option>
-                <option value="false">Female</option>
-            </select>
-            Address: <input type="text" name="address">
-            Role: <input type="text" name="role">
-            Department: <input type="text" name="department">
-            Salary From: <input type="number" name="salaryMin">
-            Salary To: <input type="number" name="salaryMax">
-            <input type="submit" value="Filter">
-        </form>
         <table>
             <tr>
                 <th>Id</th>
