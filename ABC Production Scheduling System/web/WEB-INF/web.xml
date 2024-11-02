@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>EmployeeSearchController</servlet-name>
-        <servlet-class>controller.employee.EmployeeSearchController</servlet-class>
+        <servlet-class>controller.employee.ViewListEmployeeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EmployeeSearchController</servlet-name>
-        <url-pattern>/view/search</url-pattern>
+        <url-pattern>/view/listEmployee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

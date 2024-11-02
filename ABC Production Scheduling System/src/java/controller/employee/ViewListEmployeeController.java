@@ -23,7 +23,7 @@ import java.util.ArrayList;
  *
  * @author Nguyễn Quang Minh
  */
-public class EmployeeSearchController extends BaseRBACController {
+public class ViewListEmployeeController extends BaseRBACController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -106,7 +106,7 @@ public class EmployeeSearchController extends BaseRBACController {
             request.setAttribute("did", raw_did);
 
             //Forward to JSP
-            request.getRequestDispatcher("../view/employee/search.jsp").forward(request, response);
+            request.getRequestDispatcher("../view/employee/listEmployee.jsp").forward(request, response);
 
         } catch (Exception e) {
             response.getWriter().println("Error: " + e.getMessage());

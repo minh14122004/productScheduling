@@ -15,7 +15,7 @@ Author     : Nguyễn Quang Minh
     </head>
     <body>
         <h1>Search</h1>
-        <form action="search" method="GET">
+        <form action="listEmployee" method="GET">
             ID: <input type="text" name="id" value="${id}"/><br/>
             Name: <input type="text" name="name" value="${name}"/><br/>
             Gender: 
