@@ -95,27 +95,29 @@ public class DepartmentDAO extends DBContext<Department> {
     @Override
     public ArrayList<Department> list() {
         ArrayList<Department> depts = new ArrayList<>();
-        PreparedStatement command = null;
+        PreparedStatement stm = null;
         try {
-            String sql = "SELECT did, dname FROM Department";
-
-            command = connection.prepareStatement(sql);
-            ResultSet rs = command.executeQuery();
+            String sql = "SELECT DepartmentID, DepartmentName FROM Department";
+            stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Department d = new Department();
-                d.setdID(rs.getInt("did"));
-                d.setdName(rs.getString("dname"));
+                d.setdID(rs.getInt("DepartmentID"));
+                d.setdName(rs.getString("DepartmentName"));
                 depts.add(d);
             }
-
         } catch (SQLException ex) {
-            Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                command.close();
-                connection.close();
+                if (stm != null) {
+                    stm.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(dal.DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return depts;

@@ -1,7 +1,7 @@
-        <%-- 
-    Document   : search
-    Created on : Nov 2, 2024, 1:26:32 PM
-    Author     : Nguyễn Quang Minh
+<%-- 
+Document   : search
+Created on : Nov 2, 2024, 1:26:32 PM
+Author     : Nguyễn Quang Minh
 --%>
 
 
@@ -15,51 +15,49 @@
     </head>
     <body>
         <h1>Search</h1>
-        <form action="filter" method="GET">
-            Id: <input type="text" name="id" value="${param.id}"/> <br/>
-            Name: <input type="text" name="name" value="${param.name}"/> <br/>
-            Gender: <input type="radio" name="gender"
-                           ${param.gender ne null && param.gender eq "male"?"checked=\"checked\"":""}
-                           value="male"/> Male
-            <input type="radio" name="gender"
-                   ${param.gender ne null && param.gender eq "female"?"checked=\"checked\"":""}
-                   value="female"/> Female
-            <input type="radio" name="gender" 
-                   ${param.gender eq null or param.gender eq "both"?"checked=\"checked\"":""}
-                   value="both"/> Both
-            <br/>
-            Dob - From: <input type="date" name="from" value="${param.from}"/> 
-            - To: <input type="date" name="to" value="${param.to}"/> <br/>
-            Address <input type="text" name="address" value="${param.address}"/> <br/>
-            Department: <select name="did">
-                <option value="-1">----------ALL------------</option>
-                <c:forEach items="${requestScope.depts}" var="d">
-                    <option
-                        ${param.did ne null && param.did eq d.id?"selected=\"selected\"":""}
-                        value="${d.id}">${d.name}</option>
+        <form action="search" method="GET">
+            ID: <input type="text" name="id" value="${id}"/><br/>
+            Name: <input type="text" name="name" value="${name}"/><br/>
+            Gender: 
+            <select name="gender">
+                <option value="both" ${gender == 'both' ? 'selected' : ''}>Both</option>
+                <option value="male" ${gender == 'male' ? 'selected' : ''}>Male</option>
+                <option value="female" ${gender == 'female' ? 'selected' : ''}>Female</option>
+            </select><br/>
+            Address: <input type="text" name="address" value="${address}"/><br/>
+            From: <input type="date" name="from" value="${from}"/><br/>
+            To: <input type="date" name="to" value="${to}"/><br/>
+            Department:
+            <select name="did">
+                <option value="-1">All Departments</option>
+                <c:forEach items="${depts}" var="d">
+                    <option value="${d.dID}" ${param.did eq d.dID ? 'selected' : ''}>
+                        ${d.dName}
+                    </option>
                 </c:forEach>
-            </select>
-            <br/>
+            </select><br/>
             <input type="submit" value="Search"/>
         </form>
-        <table border="1px">
+
+        <!-- Display results -->
+        <table border="1">
             <tr>
-                <td>Id</td>
-                <td>Name</td>
-                <td>Gender</td>
-                <td>Dob</td>
-                <td>Address</td>
-                <td>Department</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>DOB</th>
+                <th>Department</th>
             </tr>
-            <c:forEach items="${requestScope.emps}" var="e">
+            <c:forEach items="${emps}" var="e">
                 <tr>
-                <td>${e.id}</td>
-                <td>${e.name}</td>
-                <td>${e.gender?"Male":"Female"}</td>
-                <td>${e.dob}</td>
-                <td>${e.address}</td>
-                <td>${e.dept.name}</td>
-            </tr>
+                    <td>${e.eID}</td>
+                    <td>${e.eName}</td>
+                    <td>${e.gender ? 'Male' : 'Female'}</td>
+                    <td>${e.address}</td>
+                    <td>${e.dob}</td>
+                    <td>${e.dept.dName}</td>
+                </tr>
             </c:forEach>
         </table>
     </body>
