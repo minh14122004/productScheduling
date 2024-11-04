@@ -21,29 +21,38 @@ public class TotalDAO extends DBContext<Total> {
         String sql = "SELECT \n"
                 + "    tp.TotalID, \n"
                 + "    tp.ProductID, \n"
+                + "    p.ProductName,\n"
                 + "    tp.DepartmentID, \n"
                 + "    tp.Total,\n"
                 + "    ISNULL(SUM(do.Output), 0) AS Producted\n"
                 + "FROM \n"
                 + "    TotalProduct tp\n"
+                + "JOIN \n"
+                + "    Product p ON tp.ProductID = p.ProductID\n"
                 + "LEFT JOIN \n"
                 + "    DailyOutput do ON tp.TotalID = do.TotalID\n"
                 + "WHERE \n"
                 + "    tp.DepartmentID = ?\n"
                 + "GROUP BY \n"
-                + "    tp.TotalID, tp.ProductID, tp.DepartmentID, tp.Total;";
+                + "    tp.TotalID, tp.ProductID, p.ProductName, tp.DepartmentID, tp.Total;";
         PreparedStatement stm = null;
 
         try {
             stm = connection.prepareStatement(sql);
             stm.setInt(1, departmentID);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Total totalProduct = new Total();
-                
+
+                totalProduct.setTotalID(rs.getInt("TotalID"));
+                totalProduct.setDeapartmentID(rs.getInt("Department"));
+                totalProduct.setTotal(rs.getInt("Total"));
+                totalProduct.setProducted(rs.getInt("Producted"));
+                totalProduct.setProductName(rs.getString("ProductName"));
+
+                total.add(totalProduct);
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(TotalDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

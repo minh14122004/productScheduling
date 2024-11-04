@@ -16,6 +16,10 @@ import java.util.logging.Logger;
  * @author Nguyễn Quang Minh
  */
 public class PlanDAO extends DBContext<Plan>{
+    /**
+     * 
+     * @param entity 
+     */
 
     @Override
     public void insert(Plan entity) {

@@ -14,6 +14,7 @@ public class Total {
     private int deapartmentID;
     private int total;
     private int producted;
+    private String ProductName;
     
     public Total() {
     }
@@ -68,6 +69,16 @@ public class Total {
     public void setProducted(int producted) {
         this.producted = producted;
     }
+
+    public String getProductName() {
+        return ProductName;
+    }
+
+    public void setProductName(String ProductName) {
+        this.ProductName = ProductName;
+    }
+    
+    
     
     
     
