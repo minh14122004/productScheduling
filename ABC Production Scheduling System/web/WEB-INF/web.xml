@@ -24,6 +24,10 @@
         <servlet-name>EmployeeSearchController</servlet-name>
         <servlet-class>controller.employee.EmployeeSearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TotalProductCotroller</servlet-name>
+        <servlet-class>controller.manufacture.TotalProductCotroller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>EmployeeSearchController</servlet-name>
         <url-pattern>/view/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TotalProductCotroller</servlet-name>
+        <url-pattern>/view/product/total</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

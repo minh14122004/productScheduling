@@ -16,6 +16,48 @@ import java.util.logging.Logger;
  */
 public class TotalDAO extends DBContext<Total> {
 
+    public ArrayList<Total> list(int departmentID) {
+        ArrayList<Total> total = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    tp.TotalID, \n"
+                + "    tp.ProductID, \n"
+                + "    tp.DepartmentID, \n"
+                + "    tp.Total,\n"
+                + "    ISNULL(SUM(do.Output), 0) AS Producted\n"
+                + "FROM \n"
+                + "    TotalProduct tp\n"
+                + "LEFT JOIN \n"
+                + "    DailyOutput do ON tp.TotalID = do.TotalID\n"
+                + "WHERE \n"
+                + "    tp.DepartmentID = ?\n"
+                + "GROUP BY \n"
+                + "    tp.TotalID, tp.ProductID, tp.DepartmentID, tp.Total;";
+        PreparedStatement stm = null;
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, departmentID);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Total totalProduct = new Total();
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TotalDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(TotalDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return total;
+    }
+
     @Override
     public void insert(Total entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -33,36 +75,37 @@ public class TotalDAO extends DBContext<Total> {
 
     @Override
     public ArrayList<Total> list() {
-        ArrayList<Total> total = new ArrayList<>();
-        String sql = "Select * From TotalProduct";
-        PreparedStatement stm = null;
+//        ArrayList<Total> total = new ArrayList<>();
+//        String sql = "Select * From TotalProduct";
+//        PreparedStatement stm = null;
+//
+//        try {
+//            stm = connection.prepareStatement(sql);
+//            ResultSet rs = stm.executeQuery();
+//            while (rs.next()) {
+//                Total t = new Total();
+//                t.setTotalID(rs.getInt("TotalID"));
+//                t.setProductID(rs.getInt("ProductID"));
+//                t.setDeapartmentID(rs.getInt("DeapartmentID"));
+//                t.setTotal(rs.getInt("Total"));
+//
+//                total.add(t);
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            try {
+//                stm.close();
+//                connection.close();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//
+//        return total;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
-        try {
-            stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()){
-                Total t = new Total();
-                t.setTotalID(rs.getInt("TotalID"));
-                t.setProductID(rs.getInt("ProductID"));
-                t.setDeapartmentID(rs.getInt("DeapartmentID"));
-                t.setTotal(rs.getInt("Total"));
-                
-                total.add(t);
-            }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                stm.close();
-                connection.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        return total;
     }
 
     @Override

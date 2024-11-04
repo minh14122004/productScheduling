@@ -8,10 +8,12 @@ import controller.accesscontrol.BaseRBACController;
 import dal.DepartmentDAO;
 import dal.PlanDAO;
 import dal.ProductDAO;
+import dal.TotalDAO;
 import entity.Department;
 import entity.Plan;
 import entity.PlanCampain;
 import entity.Product;
+import entity.Total;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +22,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -38,6 +41,10 @@ public class ProductPlanController extends BaseRBACController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        TotalDAO totalDB = new TotalDAO();
+        ArrayList<Total> manu = totalDB.list();
+        request.setAttribute("manufacture", manu);
+        request.getRequestDispatcher("../view/manufacture/ProductionTotal.jsp").forward(request, response);
 
     }
 

@@ -10,19 +10,23 @@ package entity;
  */
 public class Total {
     private int totalID;
-    private int productID;
+    private Product product;
     private int deapartmentID;
     private int total;
-
+    private int producted;
+    
     public Total() {
     }
 
-    public Total(int totalID, int productID, int deapartmentID, int total) {
+    public Total(int totalID, Product product, int deapartmentID, int total, int producted) {
         this.totalID = totalID;
-        this.productID = productID;
+        this.product = product;
         this.deapartmentID = deapartmentID;
         this.total = total;
+        this.producted = producted;
     }
+
+    
 
     public int getTotalID() {
         return totalID;
@@ -32,13 +36,14 @@ public class Total {
         this.totalID = totalID;
     }
 
-    public int getProductID() {
-        return productID;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProduct(Product product) {
+        this.product = product;
     }
+
 
     public int getDeapartmentID() {
         return deapartmentID;
@@ -55,6 +60,15 @@ public class Total {
     public void setTotal(int total) {
         this.total = total;
     }
+
+    public int getProducted() {
+        return producted;
+    }
+
+    public void setProducted(int producted) {
+        this.producted = producted;
+    }
+    
     
     
 }
