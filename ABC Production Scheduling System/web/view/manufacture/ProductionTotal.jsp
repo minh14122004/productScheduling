@@ -22,6 +22,8 @@
             </tr>
             <c:forEach items="${requestScope.manufacture}" var="m">
                 <tr>
+                    <th>${m.ProductName}</th>
+                    <th>${m.producted}</th>
                     <th>${m.total}</th>
                 </tr>
             </c:forEach>

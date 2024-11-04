@@ -5,6 +5,9 @@
 package controller.manufacture;
 
 import controller.accesscontrol.BaseRBACController;
+import dal.TotalDAO;
+import dal.UserDAO;
+import entity.Total;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +25,16 @@ public class TotalProductCotroller extends BaseRBACController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User header = (User) request.getSession().getAttribute("account");
+
+        UserDAO userDB = new UserDAO();
+        int departmentID = userDB.getDepartmentIDByHeader(header);
+
+        TotalDAO totalDB = new TotalDAO();
+        ArrayList<Total> totalProduct = totalDB.list(departmentID);
+
+        request.setAttribute("manufacture", totalProduct);
+        request.getRequestDispatcher("../view/manufacture/ProductionTotal.jsp").forward(request, response);
 
     }
 
